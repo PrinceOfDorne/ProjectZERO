@@ -1,23 +1,3 @@
-
-Conversation opened. 1 unread message.
-
-Skip to content
-Using Gmail with screen readers
-final  
-
-Project ZERO Final Backup Code
-Trash
-x
-
-thot Destroyers
-Attachments
-Wed, Nov 14, 11:15 PM (12 days ago)
-to Vatsalya, me, Akhilesh, Naveen
-
-This message has been deleted. Restore message
-
-Attachments area
-
 import RPi.GPIO as GPIO
 import time
 import smtplib
@@ -33,23 +13,25 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 camera = picamera.PiCamera()
-now=dt.datetime.now()
+
 
 def sendvid():
     
-    
+    now=dt.datetime.now()
+
     camera.vflip=True
     #camera.start_preview()
     time.sleep(2)
     camera.capture('example.jpg')
     #camera.stop_preview()
+    time.sleep(2)
     camera.start_recording('examplevid.h264')
     time.sleep(5)
     camera.stop_recording()
 
     
     fromaddr = '4thotdestroyers@gmail.com'
-    toaddr = 'themostelectrifyingboyvats@gmail.com,vedicmishra213@gmail.com,naveenbigopur@gmail.com,akhilesharma47@gmail.com,2017uee0076@iitjammu.ac.in'
+    toaddr = '*****@gmail.com,********@gmail.com'
     alladdr = toaddr.split(',')
     msg = MIMEMultipart()
     msg['From'] = fromaddr
@@ -82,7 +64,7 @@ def sendvid():
     output = subprocess.check_output(command, stderr=subprocess.STDOUT)
     #print(output)
 
-    
+ 
     msg = MIMEMultipart()
     msg['From'] = fromaddr
     msg['To'] = toaddr
@@ -112,17 +94,12 @@ def sendvid():
 GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(21, GPIO.IN) 
-#GPIO.setup(24, GPIO.OUT) 
+ 
 try:
     while True:
       if GPIO.input(21): 
          print('Motion Detected')
          sendvid()
-         time.sleep(30) 
-      time.sleep(0.1) 
+         time.sleep(600)  
 except KeyboardInterrupt:
     GPIO.cleanup()
-
-
-ProjectZERO.py
-Displaying ProjectZERO.py.
