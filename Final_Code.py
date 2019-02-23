@@ -12,7 +12,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 
-cmd = 'sudo ifconfig wlan0 down'
+cmd = 'sudo ifconfig wlan0 down' #Switching Wi-Fi off so that it doesn't interfere with PIR
 os.system(cmd)
 camera = picamera.PiCamera()
 now=dt.datetime.now()
@@ -55,7 +55,7 @@ def sendvid():
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(fromaddr, 'iitjammu')
+    server.login(fromaddr, ******) #Password Hidden
     text = msg.as_string()
     server.sendmail(fromaddr, alladdr, text)
     server.quit()
@@ -87,7 +87,7 @@ def sendvid():
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(fromaddr, 'iitjammu')
+    server.login(fromaddr, *******) #Password Hidden
     text = msg.as_string()
     server.sendmail(fromaddr, alladdr, text)
     server.quit()
@@ -105,12 +105,12 @@ try:
       if GPIO.input(20): 
          now=dt.datetime.now()
          print('Motion Detected',now.strftime("%d-%m-%Y %H:%M:%S"))
-         cmd2 = 'sudo ifconfig wlan0 up'
+         cmd2 = 'sudo ifconfig wlan0 up' 
          os.system(cmd2)
          sendvid()
          cmd2 = 'sudo ifconfig wlan0 down'
          os.system(cmd2)
-         time.sleep(300) 
+         time.sleep(300)    
 except KeyboardInterrupt:
     GPIO.cleanup()
 
